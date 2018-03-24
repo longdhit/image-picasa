@@ -42,7 +42,6 @@ const picasa = new Picasa(config)
 //           contentType : 'image/jpeg',
 //           binary      : binary
 //         }
-//         console.log(photoData)
 //         picasa.postPhoto(renewedAccessToken, albumId, photoData, (error, response) => {
 //             console.log(error, response)
 //           })
