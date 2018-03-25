@@ -14,7 +14,7 @@ const picasa = new Picasa(config)
 app.listen(3000,function(){
     console.log("Server start")
 })
-
+var token;
 app.get('/get_picasa_token',function(req,res){
     const config = {
         clientId     : keys.web.client_id,
@@ -24,10 +24,11 @@ app.get('/get_picasa_token',function(req,res){
      res.redirect(authURL);
 })
 app.get('/oauth2callback',function(req,res){
-    picasa.getAccessToken(config,req.url.slice(21),function(err,accessToken,refreshToken){
+    picasa.getAccessToken(config,req.url.slice(21),function(err,body){
         if(err) return res.send({success:false,msg:err.message})
-        console.log(accessToken,refreshToken)
-        return res.send(refreshToken)
+        token = body;
+        console.log(token)
+        return res.send(token)
     })
         
 })
